@@ -9,8 +9,9 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
+        substring = LoginPageLocators.SUBSTRING_LOGIN
         # проверка, что в адресе страницы есть "login"
-        assert "login" in self.browser.current_url, "No 'login' in url on this page!"
+        assert substring in self.browser.current_url, "No 'login' in url on this page!"
 
     def should_be_login_form(self):
         # проверка наличия формы логина
