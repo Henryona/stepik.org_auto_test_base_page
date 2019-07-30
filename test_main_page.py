@@ -4,6 +4,7 @@ from pages.locators import ProductPageLocators
 from pages.locators import CartPageLocators
 from pages.login_page import LoginPage
 from pages.cart_page import CartPage
+from pages.product_page import ProductPage
 import pytest
 
 @pytest.mark.login_guest
@@ -18,6 +19,16 @@ class TestLoginFromMainPage(object):
         page.open()
 	    # выполняем метод страницы: ищем переход на страницу логина
         page.should_be_login_link()
+
+    def test_guest_cant_see_success_message(browser):
+        link = ProductPageLocators.PRODUCT_PAGE_LINK
+
+        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес	
+        page = ProductPage(browser, link)
+
+	    # открываем нужную страницу
+        page.open()
+        page.should_not_be_success_message()
 
     def test_guest_can_go_to_login_page(self, browser):
         link = MainPageLocators.MAIN_PAGE_LINK

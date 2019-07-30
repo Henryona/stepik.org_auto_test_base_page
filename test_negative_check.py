@@ -1,7 +1,7 @@
-from pages.product_page import ProductPage
+'''from pages.product_page import ProductPage
 from pages.locators import ProductPageLocators
 
-'''def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
+def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
     link = ProductPageLocators.PRODUCT_PAGE_LINK
 
     # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес	
@@ -15,7 +15,7 @@ from pages.locators import ProductPageLocators
 
     # добавляем товар в корзину
     page.add_item_to_cart()
-    page.should_not_be_success_message()'''
+    page.should_not_be_success_message()
 
 def test_guest_cant_see_success_message(browser):
     link = ProductPageLocators.PRODUCT_PAGE_LINK
@@ -27,7 +27,7 @@ def test_guest_cant_see_success_message(browser):
     page.open()
     page.should_not_be_success_message()
 
-'''def test_message_disappeared_after_adding_product_to_cart(browser):
+def test_message_disappeared_after_adding_product_to_cart(browser):
     link = ProductPageLocators.PRODUCT_PAGE_LINK
 
     # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес	
