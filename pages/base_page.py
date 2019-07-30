@@ -44,3 +44,49 @@ class BasePage(object):
             return True
 
         return False
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).\
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
+
+'''Можно добавить в BasePage абстрактный метод, который проверяет, что элемент не появляется на странице в течение заданного времени: 
+
+def is_not_element_present(self, how, what, timeout=4):
+    try:
+        WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+    except TimeoutException:
+        return True
+
+    return False
+
+Тогда его использование Page Object для страницы товара будет выглядеть так: 
+
+def should_not_be_success_message(self):
+    assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+       "Success message is presented, but should not be"
+
+Если же мы хотим проверить, что какой-то элемент исчезает, то следует воспользоваться явным ожиданием вместе с функцией until_not, в зависимости от того, какой результат мы ожидаем: 
+
+def is_disappeared(self, how, what, timeout=4):
+    try:
+        WebDriverWait(self.browser, timeout, 1, TimeoutException).\
+            until_not(EC.presence_of_element_located((how, what)))
+    except TimeoutException:
+        return False
+
+    return True
+
+Метод-проверка в классе про страницу товара будет выглядеть аналогично should_not_be_success_message, напишите его самостоятельно.
+
+ 
+
+Обратите внимание на разницу между методами is_not_element_present и is_disappeared. 
+
+is_not_element_present: упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый. 
+
+is_disappeared: будет ждать до тех пор, пока элемент не исчезнет. '''
