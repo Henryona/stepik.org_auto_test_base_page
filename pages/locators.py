@@ -8,7 +8,7 @@ class BasePageLocators():
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class MainPageLocators():
-    MAIN_PAGE_LINK = "http://selenium1py.pythonanywhere.com"
+    MAIN_PAGE_LINK = "http://selenium1py.pythonanywhere.com/en-gb/"
     LOGIN_LINK = (By.ID, "login_link")
 
 class LoginPageLocators():
